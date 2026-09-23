@@ -17,3 +17,17 @@ Rules when using results in the page:
 - Credit the photographer next to the image, linking `photographer_url` and the source site
   (e.g. "Photo by <a href=...>Name</a> on <a href="https://unsplash.com">Unsplash</a>").
 - Use `alt` as the image's alt text, rewritten if it's empty or unhelpful.
+
+## Downloading a mood board (Velor/)
+
+`tools/download-mood-board.sh [keywords-file] [count-per-keyword]` downloads actual image
+files into `Velor/<slugified-keyword>/`, one subfolder per keyword, with a `CREDITS.txt`
+per folder crediting each photographer/source/link. Default keyword list:
+`tools/mood-board-keywords.txt`. Sources: Pexels, Unsplash, Pixabay (round-robin).
+
+- Kaboompics has no public search API — it is not included. Download from it manually.
+- `Velor/` holds downloaded binary images; do not commit it (add to `.gitignore` if it's
+  going to accumulate here) unless the user explicitly asks the images to be checked in.
+- Downloaded images still carry the source's license terms (credit required, no resale as
+  stock, etc.) — keep each folder's `CREDITS.txt` alongside the images, don't discard it.
+- Needs `PEXELS_API_KEY`, `UNSPLASH_ACCESS_KEY`, and/or `PIXABAY_API_KEY` in the environment.
